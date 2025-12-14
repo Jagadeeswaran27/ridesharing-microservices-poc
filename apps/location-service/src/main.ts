@@ -1,5 +1,5 @@
 import 'dotenv/config';
 
-import { startSever } from './app/server';
+import { startServer } from './app/server';
 
-startSever();
+startServer();

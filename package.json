@@ -15,6 +15,7 @@
     "express-rate-limit": "^8.2.1",
     "helmet": "^8.1.0",
     "http-proxy-middleware": "^3.0.5",
+    "kafkajs": "^2.2.4",
     "morgan": "^1.10.1",
     "redis": "^5.10.0"
   },
@@ -56,6 +57,7 @@
   "workspaces": [
     "apps/*",
     "user-service",
-    "user-service-e2e"
+    "user-service-e2e",
+    "lib/*"
   ]
 }

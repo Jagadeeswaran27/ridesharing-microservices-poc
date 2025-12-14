@@ -1,7 +1,9 @@
 import { createApp } from './app';
 import { envConfig } from './config/env';
+import { connectProducer } from '@microservices-poc/kafka';
 
-export function startServer() {
+export async function startServer() {
+  await connectProducer();
   const app = createApp();
 
   app.listen(envConfig.PORT, () => {

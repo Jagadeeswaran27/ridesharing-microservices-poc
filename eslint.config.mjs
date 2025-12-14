@@ -13,9 +13,17 @@ export default [
       '@nx/enforce-module-boundaries': [
         'error',
         {
-          enforceBuildableLibDependency: true,
+          enforceBuildableLibDependency: false,
           allow: ['^.*/eslint(\\.base)?\\.config\\.[cm]?[jt]s$'],
           depConstraints: [
+            {
+              sourceTag: 'type:service',
+              onlyDependOnLibsWithTags: ['type:lib', 'scope:shared'],
+            },
+            {
+              sourceTag: 'type:gateway',
+              onlyDependOnLibsWithTags: ['type:lib', 'scope:shared'],
+            },
             {
               sourceTag: '*',
               onlyDependOnLibsWithTags: ['*'],

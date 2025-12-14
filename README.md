@@ -110,6 +110,54 @@ docker stop <container-name>
 docker rm <container-name>
 ```
 
+### Redpanda Setup with Docker
+
+Redpanda is a Kafka-compatible streaming platform used for event-driven communication between microservices. Set up Redpanda using Docker:
+
+#### Start Redpanda Container
+
+```bash
+docker run -d \
+  --name redpanda \
+  -p 9092:9092 \
+  -p 9644:9644 \
+  redpandadata/redpanda:latest \
+  redpanda start \
+  --overprovisioned \
+  --smp 1 \
+  --memory 1G \
+  --reserve-memory 0M \
+  --node-id 0 \
+  --check=false \
+  --kafka-addr PLAINTEXT://0.0.0.0:9092 \
+  --advertise-kafka-addr PLAINTEXT://localhost:9092
+```
+
+**Port Mappings**:
+
+- **9092**: Kafka API (for producers and consumers)
+- **9644**: Admin API and Prometheus metrics
+
+#### Verify Redpanda is Running
+
+```bash
+docker ps
+```
+
+You should see the `redpanda` container running.
+
+#### Stop Redpanda (when needed)
+
+```bash
+docker stop redpanda
+```
+
+#### Remove Redpanda Container (when needed)
+
+```bash
+docker rm redpanda
+```
+
 ## Running the Application
 
 ### Option 1: Run All Services Concurrently (Recommended)

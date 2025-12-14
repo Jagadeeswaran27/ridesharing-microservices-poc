@@ -17,6 +17,9 @@
     },
     {
       "path": "./apps/location-service"
+    },
+    {
+      "path": "./lib/kafka"
     }
   ]
 }
