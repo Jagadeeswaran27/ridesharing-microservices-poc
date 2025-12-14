@@ -8,6 +8,18 @@ out-tsc
 # dependencies
 node_modules
 
+# environment variables
+.env
+.env.local
+.env.development
+.env.production
+.env.test
+.env*.local
+**/.env
+**/.env.local
+**/.env.development
+**/.env.production
+
 # IDEs and editors
 /.idea
 .project
