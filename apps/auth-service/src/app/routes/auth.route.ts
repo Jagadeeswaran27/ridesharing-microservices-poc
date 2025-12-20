@@ -9,6 +9,7 @@ import {
   asyncHandler,
   mapPrismaError,
 } from '@microservices-poc/error-handler';
+import { generateAccessToken } from '../utils/generateJwtToken';
 
 export const authRouter = Router();
 
@@ -47,6 +48,60 @@ authRouter.post(
       logger.info('User created successfully', user);
 
       return response.status(201).json(user);
+    } catch (error) {
+      throw mapPrismaError(error);
+    }
+  })
+);
+
+authRouter.post(
+  '/login',
+  asyncHandler(async (req: Request, res: Response) => {
+    try {
+      const { email, password } = req.body;
+
+      if (!email || !password) {
+        throw new ValidationError('Email and password are required', {
+          fields: {
+            email: !email ? 'Email is required' : undefined,
+            password: !password ? 'Password is required' : undefined,
+          },
+        });
+      }
+
+      const user = await prisma.user.findUnique({
+        where: {
+          email,
+        },
+      });
+
+      if (!user) {
+        throw new ValidationError('User not found', {
+          fields: {
+            email: 'User not found',
+          },
+        });
+      }
+
+      const passwordHash = user.passwordHash;
+
+      const isPasswordValid = await bcrypt.compare(password, passwordHash);
+
+      if (!isPasswordValid) {
+        throw new ValidationError('Invalid password', {
+          fields: {
+            password: 'Invalid password',
+          },
+        });
+      }
+
+      const token = generateAccessToken(user);
+
+      return res.status(200).json({
+        success: true,
+        token,
+        message: 'User logged in successfully',
+      });
     } catch (error) {
       throw mapPrismaError(error);
     }

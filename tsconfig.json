@@ -23,6 +23,9 @@
     },
     {
       "path": "./lib/error-handler"
+    },
+    {
+      "path": "./shared/types"
     }
   ]
 }

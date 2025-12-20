@@ -75,6 +75,7 @@
     "auth-service-e2e",
     "apps",
     "apps-e2e",
-    "libs/*"
+    "libs/*",
+    "shared"
   ]
 }

@@ -12,6 +12,7 @@ import {
   morganMiddleware,
   requestIdMiddleware,
 } from '@microservices-poc/logger';
+// import { authMiddleware } from './middlewares/auth.middleware';
 
 export function createApp() {
   const app = express();
@@ -23,6 +24,7 @@ export function createApp() {
   app.use(rateLimiter);
   app.use(requestIdMiddleware);
   app.use(morganMiddleware);
+  // app.use(authMiddleware);
 
   app.get('/', (req, res) => {
     console.log(env.PORT);
