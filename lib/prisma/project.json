@@ -1,0 +1,7 @@
+{
+    "name": "@microservices-poc/prisma",
+    "tags": [
+        "type:lib",
+        "scope:shared"
+    ]
+}

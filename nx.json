@@ -29,7 +29,13 @@
           "buildDepsName": "build-deps",
           "watchDepsName": "watch-deps"
         }
-      }
+      },
+      "exclude": [
+        "lib/prisma/*",
+        "lib/logger/*",
+        "libs/error-handler/*",
+        "lib/error-handler/*"
+      ]
     },
     {
       "plugin": "@nx/eslint/plugin",
@@ -47,8 +53,25 @@
         "user-service-e2e/**/*",
         "user-service-e2e/**/*",
         "apps/user-service-e2e/**/*",
-        "apps/location-service-e2e/**/*"
+        "apps/location-service-e2e/**/*",
+        "auth-service-e2e/**/*",
+        "apps-e2e/**/*",
+        "apps/auth-service-e2e/**/*"
       ]
+    },
+    {
+      "plugin": "@nx/js/typescript",
+      "include": [
+        "lib/prisma/*",
+        "lib/logger/*",
+        "libs/error-handler/*",
+        "lib/error-handler/*"
+      ],
+      "options": {
+        "typecheck": {
+          "targetName": "typecheck"
+        }
+      }
     }
   ],
   "targetDefaults": {

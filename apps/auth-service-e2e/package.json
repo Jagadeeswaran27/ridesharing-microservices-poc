@@ -1,0 +1,26 @@
+{
+  "name": "@microservices-poc/auth-service-e2e",
+  "version": "0.0.1",
+  "private": true,
+  "nx": {
+    "implicitDependencies": [
+      "@microservices-poc/auth-service"
+    ],
+    "targets": {
+      "e2e": {
+        "executor": "@nx/jest:jest",
+        "outputs": [
+          "{projectRoot}/test-output/jest/coverage"
+        ],
+        "options": {
+          "jestConfig": "apps/auth-service-e2e/jest.config.cts",
+          "passWithNoTests": true
+        },
+        "dependsOn": [
+          "@microservices-poc/auth-service:build",
+          "@microservices-poc/auth-service:serve"
+        ]
+      }
+    }
+  }
+}

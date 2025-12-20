@@ -1,0 +1,7 @@
+{
+    "name": "@microservices-poc/error-handler",
+    "tags": [
+        "type:lib",
+        "scope:shared"
+    ]
+}

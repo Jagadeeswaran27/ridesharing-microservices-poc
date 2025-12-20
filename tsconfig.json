@@ -7,19 +7,22 @@
       "path": "./apps/api-gateway"
     },
     {
-      "path": "./apps/user-service-e2e"
+      "path": "./apps/auth-service-e2e"
     },
     {
-      "path": "./apps/user-service"
-    },
-    {
-      "path": "./apps/location-service-e2e"
-    },
-    {
-      "path": "./apps/location-service"
+      "path": "./apps/auth-service"
     },
     {
       "path": "./lib/kafka"
+    },
+    {
+      "path": "./lib/prisma"
+    },
+    {
+      "path": "./lib/logger"
+    },
+    {
+      "path": "./lib/error-handler"
     }
   ]
 }
