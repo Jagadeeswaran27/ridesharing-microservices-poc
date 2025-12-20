@@ -13,9 +13,11 @@
     "noImplicitOverride": true,
     "noImplicitReturns": true,
     "noUnusedLocals": true,
-    "skipLibCheck": true,
     "strict": true,
     "target": "es2022",
+    "types": ["node"],
+    "skipLibCheck": true,
     "customConditions": ["@microservices-poc/source"]
-  }
+  },
+  "include": ["apps/**/*", "libs/**/*"]
 }

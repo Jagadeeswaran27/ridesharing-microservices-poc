@@ -1,0 +1,7 @@
+{
+    "name": "@microservices-poc/common-types",
+    "tags": [
+        "type:lib",
+        "scope:shared"
+    ]
+}

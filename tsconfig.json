@@ -23,6 +23,9 @@
     },
     {
       "path": "./lib/error-handler"
+    },
+    {
+      "path": "./lib/common-types"
     }
   ]
 }
