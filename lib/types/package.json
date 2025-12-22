@@ -1,5 +1,5 @@
 {
-  "name": "@microservices-poc/shared",
+  "name": "@microservices-poc/types",
   "version": "0.0.1",
   "private": true,
   "type": "module",

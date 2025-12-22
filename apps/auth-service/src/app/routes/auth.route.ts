@@ -5,11 +5,14 @@ import bcrypt from 'bcrypt';
 import { prisma } from '@microservices-poc/prisma';
 import { logger } from '@microservices-poc/logger';
 import {
+  AuthenticationError,
   ValidationError,
   asyncHandler,
   mapPrismaError,
 } from '@microservices-poc/error-handler';
-import { generateAccessToken } from '../utils/generateJwtToken';
+import { generateAccessToken } from '../utils/generate-jwt-token';
+import { generateRefreshToken } from '../utils/refresh-token';
+import { hashRefreshToken } from '../utils/hash-token';
 
 export const authRouter = Router();
 
@@ -97,13 +100,120 @@ authRouter.post(
 
       const token = generateAccessToken(user);
 
+      const refreshToken = generateRefreshToken();
+
+      const hashedRefreshToken = hashRefreshToken(refreshToken);
+
+      await prisma.refreshToken.create({
+        data: {
+          userId: user.id,
+          tokenHash: hashedRefreshToken,
+          expiresAt: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
+        },
+      });
+
       return res.status(200).json({
         success: true,
-        token,
+        accessToken: token,
+        refreshToken,
         message: 'User logged in successfully',
       });
     } catch (error) {
       throw mapPrismaError(error);
     }
+  })
+);
+
+authRouter.post(
+  '/refresh-token',
+  asyncHandler(async (req: Request, res: Response) => {
+    try {
+      const { refreshToken } = req.body;
+
+      if (!refreshToken) {
+        throw new ValidationError('Refresh token is required', {
+          fields: {
+            refreshToken: 'Refresh token is required',
+          },
+        });
+      }
+
+      const hashedRefreshToken = hashRefreshToken(refreshToken);
+
+      const storedRefreshToken = await prisma.refreshToken.findUnique({
+        where: {
+          tokenHash: hashedRefreshToken,
+          expiresAt: {
+            gt: new Date(),
+          },
+        },
+        include: {
+          user: true,
+        },
+      });
+
+      if (!storedRefreshToken || !storedRefreshToken.user) {
+        throw new AuthenticationError('Invalid refresh token', {
+          code: 'REFRESH_TOKEN_INVALID',
+        });
+      }
+
+      await prisma.refreshToken.delete({
+        where: {
+          id: storedRefreshToken.id,
+        },
+      });
+
+      const newRefreshToken = generateRefreshToken();
+
+      const newRefreshTokenHash = hashRefreshToken(newRefreshToken);
+
+      await prisma.refreshToken.create({
+        data: {
+          userId: storedRefreshToken.user.id,
+          tokenHash: newRefreshTokenHash,
+          expiresAt: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
+        },
+      });
+
+      const newAccessToken = generateAccessToken(storedRefreshToken.user);
+
+      return res.status(200).json({
+        success: true,
+        accessToken: newAccessToken,
+        refreshToken: newRefreshToken,
+        message: 'Refresh token generated successfully',
+      });
+    } catch (error) {
+      throw mapPrismaError(error);
+    }
+  })
+);
+
+authRouter.post(
+  '/logout',
+  asyncHandler(async (req: Request, res: Response) => {
+    const { refreshToken } = req.body;
+
+    if (!refreshToken) {
+      throw new ValidationError('Refresh token is required', {
+        fields: {
+          refreshToken: 'Refresh token is required',
+        },
+      });
+    }
+
+    const hashedRefreshToken = hashRefreshToken(refreshToken);
+
+    await prisma.refreshToken.deleteMany({
+      where: {
+        tokenHash: hashedRefreshToken,
+      },
+    });
+
+    return res.status(200).json({
+      success: true,
+      message: 'User logged out successfully',
+    });
   })
 );

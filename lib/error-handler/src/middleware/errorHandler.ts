@@ -1,4 +1,4 @@
-import { Request, Response } from 'express';
+import { Request, Response, NextFunction } from 'express';
 import { StatusCodes } from 'http-status-codes';
 
 import { AppError } from '../errors/AppError.js';
@@ -7,7 +7,8 @@ import { formatErrorResponse } from '../formatters/errorResponse.js';
 export function errorHandler(
   error: Error | AppError,
   req: Request,
-  res: Response
+  res: Response,
+  next: NextFunction
 ): void {
   const isDevelopment = process.env.NODE_ENV === 'development';
   const isAppError = error instanceof AppError;

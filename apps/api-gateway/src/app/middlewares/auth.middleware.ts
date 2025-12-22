@@ -1,8 +1,7 @@
 import { Request, Response, NextFunction } from 'express';
 
 import { AuthenticationError } from '@microservices-poc/error-handler';
-import { verifyToken } from '../utils/verifyJwtToken';
-import '@microservices-poc/shared/types';
+import { verifyToken } from '../utils/verify-jwt-token';
 
 export const authMiddleware = (
   req: Request,
@@ -12,14 +11,12 @@ export const authMiddleware = (
   try {
     const authHeader = req.headers.authorization;
 
-    // if (!authHeader) {
-    //   throw new ValidationError('Authorization header is required');
-    // }
-
     const token = authHeader?.split(' ')[1];
 
     if (!token) {
-      throw new AuthenticationError('Token is required');
+      throw new AuthenticationError('Token is required', {
+        code: 'TOKEN_REQUIRED',
+      });
     }
 
     const decoded = verifyToken(token);

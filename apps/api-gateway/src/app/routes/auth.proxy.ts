@@ -16,12 +16,10 @@ export const authServiceProxy = createProxyMiddleware({
 
       const body = (req as any).body;
 
-      if (body && Object.keys(body).length > 0) {
-        const bodyData = JSON.stringify(body);
-        proxyReq.setHeader('Content-Length', Buffer.byteLength(bodyData));
-        proxyReq.write(bodyData);
-        proxyReq.end();
-      }
+      const bodyData = JSON.stringify(body);
+      proxyReq.setHeader('Content-Length', Buffer.byteLength(bodyData));
+      proxyReq.write(bodyData);
+      proxyReq.end();
     },
     error: (err, req, res) => {
       if ('statusCode' in res) {
