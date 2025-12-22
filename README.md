@@ -61,21 +61,32 @@ PORT=3000
 NODE_ENV=development
 ```
 
-#### User Service (`apps/user-service/.env`)
+#### Auth Service (`apps/auth-service/.env`)
 
 ```env
 PORT=3001
 NODE_ENV=development
 ```
 
-#### Location Service (`apps/location-service/.env`)
+> **Note:** Adjust ports and configurations as needed for your environment.
 
-```env
-PORT=3002
-REDIS_URL=redis://localhost:6379
+### JWT Configuration
+
+The `auth-service` and `api-gateway` require RSA keys for signing and verifying JWT tokens. You need to generate a private and public key pair and place them in the project root.
+
+#### Generate Keys
+
+Run the following commands in the root of the project:
+
+```bash
+# Generate private key
+openssl genrsa -out private.pem 2048
+
+# Generate public key
+openssl rsa -in private.pem -pubout -out public.pem
 ```
 
-> **Note:** Adjust ports and configurations as needed for your environment.
+Ensure `private.pem` and `public.pem` are located in the root directory (`microservices-poc/`).
 
 ### Redis Setup with Docker
 
@@ -177,8 +188,7 @@ nx run-many --target=serve --projects=tag:type:gateway,tag:type:service
 It automatically starts:
 
 - **API Gateway** on `http://localhost:3000`
-- **User Service** on `http://localhost:3001`
-- **Location Service** on `http://localhost:3002`
+- **Auth Service** on `http://localhost:3001`
 
 All services will run concurrently in the same terminal, with output from each service clearly labeled.
 
@@ -192,16 +202,10 @@ You can also run services individually using Nx:
 nx serve api-gateway
 ```
 
-#### User Service
+#### Auth Service
 
 ```bash
-nx serve user-service
-```
-
-#### Location Service
-
-```bash
-nx serve location-service
+nx serve auth-service
 ```
 
 ### Verify Services are Running
@@ -209,8 +213,7 @@ nx serve location-service
 Once started, the services will be available at:
 
 - **API Gateway**: `http://localhost:3000`
-- **User Service**: `http://localhost:3001`
-- **Location Service**: `http://localhost:3002`
+- **Auth Service**: `http://localhost:3001`
 
 ## Project Structure
 
@@ -221,16 +224,10 @@ microservices-poc/
 │   │   ├── src/
 │   │   ├── .env
 │   │   └── project.json
-│   ├── user-service/         # User microservice
+│   ├── auth-service/         # Auth microservice
 │   │   ├── src/
 │   │   ├── .env
 │   │   └── project.json
-│   ├── location-service/     # Location microservice
-│   │   ├── src/
-│   │   ├── .env
-│   │   └── project.json
-│   ├── user-service-e2e/     # E2E tests for user service
-│   └── location-service-e2e/ # E2E tests for location service
 ├── node_modules/
 ├── nx.json                   # Nx workspace configuration
 ├── package.json              # Root package.json
@@ -246,17 +243,10 @@ microservices-poc/
 - **Purpose**: Routes and proxies requests to appropriate microservices
 - **Tags**: `type:gateway`
 
-### User Service Details
+### Auth Service Details
 
 - **Port**: 3001
-- **Purpose**: Handles user management operations
-- **Tags**: `type:service`
-
-### Location Service Details
-
-- **Port**: 3002
-- **Purpose**: Manages location-based features with Redis caching
-- **Dependencies**: Redis
+- **Purpose**: Handles authentication operations
 - **Tags**: `type:service`
 
 ## Development
