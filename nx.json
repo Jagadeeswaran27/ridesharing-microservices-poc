@@ -36,7 +36,9 @@
         "libs/error-handler/*",
         "lib/error-handler/*",
         "shared/*",
-        "lib/types/*"
+        "lib/types/*",
+        "lib/auth-db/*",
+        "lib/env-config/*"
       ]
     },
     {
@@ -58,7 +60,9 @@
         "apps/location-service-e2e/**/*",
         "auth-service-e2e/**/*",
         "apps-e2e/**/*",
-        "apps/auth-service-e2e/**/*"
+        "apps/auth-service-e2e/**/*",
+        "apps/tracking-service-e2e/**/*",
+        "apps/tracking-service-e2e/**/*"
       ]
     },
     {
@@ -69,7 +73,9 @@
         "libs/error-handler/*",
         "lib/error-handler/*",
         "shared/*",
-        "lib/types/*"
+        "lib/types/*",
+        "lib/auth-db/*",
+        "lib/env-config/*"
       ],
       "options": {
         "typecheck": {
@@ -86,6 +92,11 @@
     },
     "test": {
       "dependsOn": ["^build"]
+    },
+    "@nx/js:tsc": {
+      "cache": true,
+      "dependsOn": ["^build"],
+      "inputs": ["production", "^production"]
     }
   },
   "workspaceLayout": {

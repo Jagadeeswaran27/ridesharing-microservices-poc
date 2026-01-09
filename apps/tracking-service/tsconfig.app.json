@@ -23,7 +23,7 @@
       "path": "../../lib/env-config/tsconfig.lib.json"
     },
     {
-      "path": "../../lib/auth-db/tsconfig.lib.json"
+      "path": "../../lib/redis/tsconfig.lib.json"
     },
     {
       "path": "../../lib/error-handler/tsconfig.lib.json"

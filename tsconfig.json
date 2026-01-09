@@ -13,6 +13,9 @@
       "path": "./apps/auth-service"
     },
     {
+      "path": "./apps/tracking-service"
+    },
+    {
       "path": "./lib/kafka"
     },
     {
@@ -26,6 +29,18 @@
     },
     {
       "path": "./lib/types"
+    },
+    {
+      "path": "./lib/auth-db"
+    },
+    {
+      "path": "./lib/env-config"
+    },
+    {
+      "path": "./apps/tracking-service-e2e"
+    },
+    {
+      "path": "./lib/redis"
     }
   ]
 }

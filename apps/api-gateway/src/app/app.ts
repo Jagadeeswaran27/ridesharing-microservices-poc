@@ -7,7 +7,7 @@ import { rateLimiter } from './middlewares/rateLimit.middleware';
 import { healthRouter } from './routes/health.route';
 import { errorHandler } from './middlewares/error.middleware';
 import { authServiceProxy } from './routes/auth.proxy';
-import { env } from './config/env';
+import { trackingServiceProxy } from './routes/tracking.proxy';
 import {
   morganMiddleware,
   requestIdMiddleware,
@@ -27,7 +27,6 @@ export function createApp() {
   // app.use(authMiddleware);
 
   app.get('/', (req, res) => {
-    console.log(env.PORT);
     res.json({
       success: true,
       message: 'Welcome to the API Gateway',
@@ -36,6 +35,7 @@ export function createApp() {
 
   app.use('/health', healthRouter);
   app.use('/api/v1/auth', authServiceProxy);
+  app.use('/api/v1/tracking', trackingServiceProxy);
 
   app.use((_req, _res, next) => {
     next(new Error('Route not found'));

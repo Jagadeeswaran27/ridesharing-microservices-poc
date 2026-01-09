@@ -2,7 +2,6 @@ import { Router } from 'express';
 import { Request, Response } from 'express';
 import bcrypt from 'bcrypt';
 
-import { prisma } from '@microservices-poc/prisma';
 import { logger } from '@microservices-poc/logger';
 import {
   AuthenticationError,
@@ -10,9 +9,14 @@ import {
   asyncHandler,
   mapPrismaError,
 } from '@microservices-poc/error-handler';
+import { getAuthDbClient } from '@microservices-poc/auth-db';
+import { env } from '@microservices-poc/env-config';
+
 import { generateAccessToken } from '../utils/generate-jwt-token';
 import { generateRefreshToken } from '../utils/refresh-token';
 import { hashRefreshToken } from '../utils/hash-token';
+
+const prisma = getAuthDbClient(env.AUTH_DATABASE_URL);
 
 export const authRouter = Router();
 
@@ -25,9 +29,9 @@ authRouter.post(
       logger.error('Invalid Payload');
       throw new ValidationError('Email, name, and password are required', {
         fields: {
-          email: !email ? 'Email is required' : undefined,
-          name: !name ? 'Name is required' : undefined,
-          password: !password ? 'Password is required' : undefined,
+          email: 'Email is required',
+          name: 'Name is required',
+          password: 'Password is required',
         },
       });
     }
@@ -158,23 +162,24 @@ authRouter.post(
         });
       }
 
-      await prisma.refreshToken.delete({
-        where: {
-          id: storedRefreshToken.id,
-        },
-      });
-
       const newRefreshToken = generateRefreshToken();
 
       const newRefreshTokenHash = hashRefreshToken(newRefreshToken);
 
-      await prisma.refreshToken.create({
-        data: {
-          userId: storedRefreshToken.user.id,
-          tokenHash: newRefreshTokenHash,
-          expiresAt: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
-        },
-      });
+      await prisma.$transaction([
+        prisma.refreshToken.delete({
+          where: {
+            id: storedRefreshToken.id,
+          },
+        }),
+        prisma.refreshToken.create({
+          data: {
+            userId: storedRefreshToken.user.id,
+            tokenHash: newRefreshTokenHash,
+            expiresAt: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
+          },
+        }),
+      ]);
 
       const newAccessToken = generateAccessToken(storedRefreshToken.user);
 

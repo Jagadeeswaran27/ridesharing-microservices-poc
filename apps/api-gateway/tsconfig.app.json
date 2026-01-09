@@ -6,7 +6,7 @@
     "rootDir": "src",
     "tsBuildInfoFile": "dist/tsconfig.app.tsbuildinfo"
   },
-  "include": ["src/**/*.ts","../../lib/types/src/**/*.d.ts"],
+  "include": ["src/**/*.ts", "../../lib/types/src/**/*.d.ts"],
   "exclude": [
     "out-tsc",
     "dist",
@@ -17,5 +17,16 @@
     "eslint.config.js",
     "eslint.config.cjs",
     "eslint.config.mjs"
+  ],
+  "references": [
+    {
+      "path": "../../lib/types/tsconfig.lib.json"
+    },
+    {
+      "path": "../../lib/error-handler/tsconfig.lib.json"
+    },
+    {
+      "path": "../../lib/logger/tsconfig.lib.json"
+    }
   ]
 }
