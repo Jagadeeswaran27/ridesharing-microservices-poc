@@ -86,7 +86,7 @@ openssl genrsa -out private.pem 2048
 openssl rsa -in private.pem -pubout -out public.pem
 ```
 
-Ensure `private.pem` and `public.pem` are located in the root directory (`microservices-poc/`).
+Ensure `private.pem` and `public.pem` are located in the root directory (`microservices/`).
 
 ### Redis Setup with Docker
 
@@ -218,7 +218,7 @@ Once started, the services will be available at:
 ## Project Structure
 
 ```text
-microservices-poc/
+microservices/
 ├── apps/
 │   ├── api-gateway/          # API Gateway service
 │   │   ├── src/

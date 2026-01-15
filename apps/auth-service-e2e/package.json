@@ -1,10 +1,10 @@
 {
-  "name": "@microservices-poc/auth-service-e2e",
+  "name": "@microservices/auth-service-e2e",
   "version": "0.0.1",
   "private": true,
   "nx": {
     "implicitDependencies": [
-      "@microservices-poc/auth-service"
+      "@microservices/auth-service"
     ],
     "targets": {
       "e2e": {
@@ -17,8 +17,8 @@
           "passWithNoTests": true
         },
         "dependsOn": [
-          "@microservices-poc/auth-service:build",
-          "@microservices-poc/auth-service:serve"
+          "@microservices/auth-service:build",
+          "@microservices/auth-service:serve"
         ]
       }
     }

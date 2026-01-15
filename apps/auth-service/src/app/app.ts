@@ -3,14 +3,8 @@ import cors from 'cors';
 import helmet from 'helmet';
 
 import { authRouter } from './routes/auth.route';
-import {
-  morganMiddleware,
-  requestIdMiddleware,
-} from '@microservices-poc/logger';
-import {
-  errorHandler,
-  notFoundHandler,
-} from '@microservices-poc/error-handler';
+import { morganMiddleware, requestIdMiddleware } from '@microservices/logger';
+import { errorHandler, notFoundHandler } from '@microservices/error-handler';
 
 export function createApp() {
   const app = express();

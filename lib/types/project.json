@@ -1,5 +1,5 @@
 {
-    "name": "@microservices-poc/types",
+    "name": "@microservices/types",
     "tags": [
         "type:lib",
         "scope:shared"

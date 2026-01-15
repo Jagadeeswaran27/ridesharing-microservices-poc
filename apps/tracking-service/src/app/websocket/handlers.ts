@@ -1,10 +1,15 @@
 import { WebSocket } from 'ws';
 
 import { DriverLocationMessage } from './types';
-import { getRedisClient } from '@microservices-poc/redis';
-import { env } from '@microservices-poc/env-config';
-import { ValidationError } from '@microservices-poc/error-handler';
-import { logger } from '@microservices-poc/logger';
+
+import { getRedisClient } from '@microservices/redis';
+import { env } from '@microservices/env-config';
+import { ValidationError } from '@microservices/error-handler';
+import { logger } from '@microservices/logger';
+import {
+  DriverLocationSchema,
+  DriverLocationSchemaRedisGeo,
+} from '../types/location';
 
 export async function handleSocketMessage(ws: WebSocket, rawData: Buffer) {
   try {
@@ -26,13 +31,15 @@ export async function handleSocketMessage(ws: WebSocket, rawData: Buffer) {
       const redis = getRedisClient(env.REDIS_URL);
       const LOCATION_TTL = 40;
 
-      await redis.geoAdd('drivers:locations', {
+      const driverLocationGeo = DriverLocationSchemaRedisGeo.parse({
         longitude: lng,
         latitude: lat,
         member: driverId,
       });
 
-      const locationData = {
+      await redis.geoAdd('drivers:locations', driverLocationGeo);
+
+      const locationData = DriverLocationSchema.parse({
         driverId,
         lat,
         lng,
@@ -40,7 +47,7 @@ export async function handleSocketMessage(ws: WebSocket, rawData: Buffer) {
         speed: null,
         timestamp: Date.now(),
         updatedAt: Date.now(),
-      };
+      });
 
       await redis.set(
         `driver:location:${driverId}`,

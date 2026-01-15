@@ -14,7 +14,7 @@ export function initWebsocket(server: any) {
     });
 
     ws.on('close', () => {
-      console.log('❎ WebSocket disconnected');
+      console.log('WebSocket disconnected');
     });
   });
 

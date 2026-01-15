@@ -1,5 +1,5 @@
 {
-  "name": "@microservices-poc/auth-service",
+  "name": "@microservices/auth-service",
   "version": "0.0.1",
   "private": true,
   "nx": {
@@ -83,15 +83,15 @@
           "build"
         ],
         "options": {
-          "buildTarget": "@microservices-poc/auth-service:build",
+          "buildTarget": "@microservices/auth-service:build",
           "runBuildTargetDependencies": false
         },
         "configurations": {
           "development": {
-            "buildTarget": "@microservices-poc/auth-service:build:development"
+            "buildTarget": "@microservices/auth-service:build:development"
           },
           "production": {
-            "buildTarget": "@microservices-poc/auth-service:build:production"
+            "buildTarget": "@microservices/auth-service:build:production"
           }
         }
       },

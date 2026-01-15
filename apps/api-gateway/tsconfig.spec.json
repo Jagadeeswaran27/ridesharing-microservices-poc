@@ -1,8 +1,19 @@
 {
   "extends": "../../tsconfig.base.json",
   "compilerOptions": {
+    "baseUrl": "../..",
     "outDir": "./out-tsc/jest",
-    "types": ["jest", "node"]
+    "types": ["jest", "node"],
+    "paths": {
+      "@microservices/logger": ["lib/logger/src/index.ts"],
+      "@microservices/error-handler": ["lib/error-handler/src/index.ts"],
+      "@microservices/types": ["lib/types/src/index.ts"],
+      "@microservices/kafka": ["lib/kafka/src/index.ts"],
+      "@microservices/redis": ["lib/redis/src/index.ts"],
+      "@microservices/auth-db": ["lib/auth-db/src/index.ts"],
+      "@microservices/env-config": ["lib/env-config/src/index.ts"],
+      "@microservices/prisma": ["lib/prisma/src/index.ts"]
+    }
   },
   "include": [
     "jest.config.ts",
@@ -10,10 +21,5 @@
     "src/**/*.test.ts",
     "src/**/*.spec.ts",
     "src/**/*.d.ts"
-  ],
-  "references": [
-    {
-      "path": "./tsconfig.app.json"
-    }
   ]
 }

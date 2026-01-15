@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from 'express';
 
-import { AuthenticationError } from '@microservices-poc/error-handler';
+import { AuthenticationError } from '@microservices/error-handler';
 import { verifyToken } from '../utils/verify-jwt-token';
 
 export const authMiddleware = (

@@ -1,5 +1,5 @@
 {
-    "name": "@microservices-poc/kafka",
+    "name": "@microservices/kafka",
     "tags": [
         "type:lib",
         "scope:shared"

@@ -2,18 +2,12 @@ import express from 'express';
 import cors from 'cors';
 import helmet from 'helmet';
 
-import {
-  morganMiddleware,
-  requestIdMiddleware,
-} from '@microservices-poc/logger';
-import {
-  errorHandler,
-  notFoundHandler,
-} from '@microservices-poc/error-handler';
+import { morganMiddleware, requestIdMiddleware } from '@microservices/logger';
+import { errorHandler, notFoundHandler } from '@microservices/error-handler';
 import { trackingRouter } from './routes/tracking.route';
 
-import { connectRedis } from '@microservices-poc/redis';
-import { env } from '@microservices-poc/env-config';
+import { connectRedis } from '@microservices/redis';
+import { env } from '@microservices/env-config';
 
 export async function createApp() {
   const app = express();

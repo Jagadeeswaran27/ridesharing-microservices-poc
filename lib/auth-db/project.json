@@ -1,5 +1,5 @@
 {
-    "name": "@microservices-poc/auth-db",
+    "name": "@microservices/auth-db",
     "tags": [
         "type:lib",
         "scope:shared"

@@ -4,9 +4,9 @@
     {
       "type": "node",
       "request": "launch",
-      "name": "Debug @microservices-poc/microservices-poc with Nx",
+      "name": "Debug @microservices/microservices with Nx",
       "runtimeExecutable": "npx",
-      "runtimeArgs": ["nx", "serve", "@microservices-poc/microservices-poc"],
+      "runtimeArgs": ["nx", "serve", "@microservices/microservices"],
       "env": {
         "NODE_OPTIONS": "--inspect=9229"
       },
@@ -15,16 +15,16 @@
       "skipFiles": ["<node_internals>/**"],
       "sourceMaps": true,
       "outFiles": [
-        "${workspaceFolder}/apps/microservices-poc/dist/**/*.(m|c|)js",
+        "${workspaceFolder}/apps/microservices/dist/**/*.(m|c|)js",
         "!**/node_modules/**"
       ]
     },
     {
       "type": "node",
       "request": "launch",
-      "name": "Debug @microservices-poc/user-service with Nx",
+      "name": "Debug @microservices/user-service with Nx",
       "runtimeExecutable": "npx",
-      "runtimeArgs": ["nx", "serve", "@microservices-poc/user-service"],
+      "runtimeArgs": ["nx", "serve", "@microservices/user-service"],
       "env": {
         "NODE_OPTIONS": "--inspect=9230"
       },
@@ -40,9 +40,9 @@
     {
       "type": "node",
       "request": "launch",
-      "name": "Debug @microservices-poc/user-service with Nx",
+      "name": "Debug @microservices/user-service with Nx",
       "runtimeExecutable": "npx",
-      "runtimeArgs": ["nx", "serve", "@microservices-poc/user-service"],
+      "runtimeArgs": ["nx", "serve", "@microservices/user-service"],
       "env": {
         "NODE_OPTIONS": "--inspect=9231"
       },
@@ -58,9 +58,9 @@
     {
       "type": "node",
       "request": "launch",
-      "name": "Debug @microservices-poc/user-service with Nx",
+      "name": "Debug @microservices/user-service with Nx",
       "runtimeExecutable": "npx",
-      "runtimeArgs": ["nx", "serve", "@microservices-poc/user-service"],
+      "runtimeArgs": ["nx", "serve", "@microservices/user-service"],
       "env": {
         "NODE_OPTIONS": "--inspect=9232"
       },
@@ -76,9 +76,9 @@
     {
       "type": "node",
       "request": "launch",
-      "name": "Debug @microservices-poc/location-service with Nx",
+      "name": "Debug @microservices/location-service with Nx",
       "runtimeExecutable": "npx",
-      "runtimeArgs": ["nx", "serve", "@microservices-poc/location-service"],
+      "runtimeArgs": ["nx", "serve", "@microservices/location-service"],
       "env": {
         "NODE_OPTIONS": "--inspect=9233"
       },
@@ -94,9 +94,9 @@
     {
       "type": "node",
       "request": "launch",
-      "name": "Debug @microservices-poc/auth-service with Nx",
+      "name": "Debug @microservices/auth-service with Nx",
       "runtimeExecutable": "npx",
-      "runtimeArgs": ["nx", "serve", "@microservices-poc/auth-service"],
+      "runtimeArgs": ["nx", "serve", "@microservices/auth-service"],
       "env": {
         "NODE_OPTIONS": "--inspect=9234"
       },
@@ -112,9 +112,9 @@
     {
       "type": "node",
       "request": "launch",
-      "name": "Debug @microservices-poc/apps with Nx",
+      "name": "Debug @microservices/apps with Nx",
       "runtimeExecutable": "npx",
-      "runtimeArgs": ["nx", "serve", "@microservices-poc/apps"],
+      "runtimeArgs": ["nx", "serve", "@microservices/apps"],
       "env": {
         "NODE_OPTIONS": "--inspect=9235"
       },
@@ -130,9 +130,9 @@
     {
       "type": "node",
       "request": "launch",
-      "name": "Debug @microservices-poc/auth-service with Nx",
+      "name": "Debug @microservices/auth-service with Nx",
       "runtimeExecutable": "npx",
-      "runtimeArgs": ["nx", "serve", "@microservices-poc/auth-service"],
+      "runtimeArgs": ["nx", "serve", "@microservices/auth-service"],
       "env": {
         "NODE_OPTIONS": "--inspect=9236"
       },
@@ -166,9 +166,9 @@
     {
       "type": "node",
       "request": "launch",
-      "name": "Debug @microservices-poc/tracking-service with Nx",
+      "name": "Debug @microservices/tracking-service with Nx",
       "runtimeExecutable": "npx",
-      "runtimeArgs": ["nx", "serve", "@microservices-poc/tracking-service"],
+      "runtimeArgs": ["nx", "serve", "@microservices/tracking-service"],
       "env": {
         "NODE_OPTIONS": "--inspect=9238"
       },

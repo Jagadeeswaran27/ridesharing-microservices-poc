@@ -1,5 +1,5 @@
 import 'dotenv/config';
-import '@microservices-poc/types';
+import '@microservices/types';
 
 import { startServer } from './app/server';
 

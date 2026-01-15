@@ -2,15 +2,15 @@ import { Router } from 'express';
 import { Request, Response } from 'express';
 import bcrypt from 'bcrypt';
 
-import { logger } from '@microservices-poc/logger';
+import { logger } from '@microservices/logger';
 import {
   AuthenticationError,
   ValidationError,
   asyncHandler,
   mapPrismaError,
-} from '@microservices-poc/error-handler';
-import { getAuthDbClient } from '@microservices-poc/auth-db';
-import { env } from '@microservices-poc/env-config';
+} from '@microservices/error-handler';
+import { getAuthDbClient } from '@microservices/auth-db';
+import { env } from '@microservices/env-config';
 
 import { generateAccessToken } from '../utils/generate-jwt-token';
 import { generateRefreshToken } from '../utils/refresh-token';

@@ -1,5 +1,5 @@
 {
-    "name": "@microservices-poc/env-config",
+    "name": "@microservices/env-config",
     "tags": [
         "type:lib",
         "scope:shared"

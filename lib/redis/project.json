@@ -1,5 +1,5 @@
 {
-    "name": "@microservices-poc/redis",
+    "name": "@microservices/redis",
     "tags": [
         "type:lib",
         "scope:shared"

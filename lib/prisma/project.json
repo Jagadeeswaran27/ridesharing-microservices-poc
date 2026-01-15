@@ -1,5 +1,5 @@
 {
-    "name": "@microservices-poc/prisma",
+    "name": "@microservices/prisma",
     "tags": [
         "type:lib",
         "scope:shared"

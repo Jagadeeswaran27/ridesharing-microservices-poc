@@ -1,5 +1,5 @@
 {
-  "name": "@microservices-poc/api-gateway",
+  "name": "@microservices/api-gateway",
   "version": "0.0.1",
   "private": true,
   "nx": {
@@ -83,15 +83,15 @@
           "build"
         ],
         "options": {
-          "buildTarget": "@microservices-poc/api-gateway:build",
+          "buildTarget": "@microservices/api-gateway:build",
           "runBuildTargetDependencies": false
         },
         "configurations": {
           "development": {
-            "buildTarget": "@microservices-poc/api-gateway:build:development"
+            "buildTarget": "@microservices/api-gateway:build:development"
           },
           "production": {
-            "buildTarget": "@microservices-poc/api-gateway:build:production"
+            "buildTarget": "@microservices/api-gateway:build:production"
           }
         }
       },

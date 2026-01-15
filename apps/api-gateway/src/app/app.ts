@@ -8,10 +8,7 @@ import { healthRouter } from './routes/health.route';
 import { errorHandler } from './middlewares/error.middleware';
 import { authServiceProxy } from './routes/auth.proxy';
 import { trackingServiceProxy } from './routes/tracking.proxy';
-import {
-  morganMiddleware,
-  requestIdMiddleware,
-} from '@microservices-poc/logger';
+import { morganMiddleware, requestIdMiddleware } from '@microservices/logger';
 // import { authMiddleware } from './middlewares/auth.middleware';
 
 export function createApp() {

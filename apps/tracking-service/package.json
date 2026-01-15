@@ -1,5 +1,5 @@
 {
-  "name": "@microservices-poc/tracking-service",
+  "name": "@microservices/tracking-service",
   "version": "0.0.1",
   "private": true,
   "nx": {
@@ -83,15 +83,15 @@
           "build"
         ],
         "options": {
-          "buildTarget": "@microservices-poc/tracking-service:build",
+          "buildTarget": "@microservices/tracking-service:build",
           "runBuildTargetDependencies": false
         },
         "configurations": {
           "development": {
-            "buildTarget": "@microservices-poc/tracking-service:build:development"
+            "buildTarget": "@microservices/tracking-service:build:development"
           },
           "production": {
-            "buildTarget": "@microservices-poc/tracking-service:build:production"
+            "buildTarget": "@microservices/tracking-service:build:production"
           }
         }
       },

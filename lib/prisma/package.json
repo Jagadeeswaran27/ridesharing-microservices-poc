@@ -1,5 +1,5 @@
 {
-  "name": "@microservices-poc/prisma",
+  "name": "@microservices/prisma",
   "version": "0.0.1",
   "private": true,
   "type": "module",

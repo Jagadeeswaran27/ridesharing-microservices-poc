@@ -1,5 +1,5 @@
 {
-    "name": "@microservices-poc/logger",
+    "name": "@microservices/logger",
     "tags": [
         "type:lib",
         "scope:shared"

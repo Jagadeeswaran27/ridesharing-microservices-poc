@@ -1,10 +1,10 @@
 {
-  "name": "@microservices-poc/tracking-service-e2e",
+  "name": "@microservices/tracking-service-e2e",
   "version": "0.0.1",
   "private": true,
   "nx": {
     "implicitDependencies": [
-      "@microservices-poc/tracking-service"
+      "@microservices/tracking-service"
     ],
     "targets": {
       "e2e": {
@@ -17,8 +17,8 @@
           "passWithNoTests": true
         },
         "dependsOn": [
-          "@microservices-poc/tracking-service:build",
-          "@microservices-poc/tracking-service:serve"
+          "@microservices/tracking-service:build",
+          "@microservices/tracking-service:serve"
         ]
       }
     }
